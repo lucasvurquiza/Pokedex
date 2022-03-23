@@ -4,10 +4,10 @@ export type TResults = {
 };
 
 export type TAllPokemons = {
-  count: number;
-  next: string;
-  previous: string | null;
-  results: Array<TResults>;
+  count?: number;
+  next?: string;
+  previous?: string | null;
+  results?: Array<TResults>;
 };
 
 export type TItem = {

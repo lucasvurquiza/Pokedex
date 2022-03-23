@@ -15,6 +15,20 @@ class Pokemon {
       });
   }
 
+  async getLoadMorePokemons(offsetLimit: string) {
+    return api
+      .get(`/pokemon${offsetLimit}`, {
+        cancelToken: source.token,
+      })
+      .then(async response => {
+        return response.data;
+      })
+      .catch(() => {
+        console.log('Deu bigode');
+        return null;
+      });
+  }
+
   getImagePokemon(id: string) {
     return `https://cdn.traction.one/pokedex/pokemon/${id}.png`;
   }
