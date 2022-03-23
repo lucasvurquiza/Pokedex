@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {BASE_URL} from './urls';
+import {POKE_API} from './urls';
 
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: POKE_API,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
