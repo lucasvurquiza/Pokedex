@@ -3,7 +3,7 @@ import {api, source} from 'utils/axios';
 class Pokemon {
   async getAllPokemons() {
     return api
-      .get('/pokemon', {
+      .get('/pokemon?offset=0&limit=10', {
         cancelToken: source.token,
       })
       .then(async response => {
