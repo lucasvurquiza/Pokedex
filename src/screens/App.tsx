@@ -1,11 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {FlatList, Image, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import Pokemon from 'api/Pokemon';
 import {TAllPokemons} from 'utils/types';
 import PokemonShow from 'components/PokemonShow';
 import {Loading} from 'components/Loading';
-import {POKEMON_LOGO, POKE_API} from 'utils/urls';
+import {POKE_API} from 'utils/urls';
+import {FlatListItemSeparator} from 'components/FlatListItemSeparator';
+import {LogoPokemon} from 'components/LogoPokemon';
 
 const App = () => {
   const [pokemons, setPokemons] = useState<TAllPokemons>({});
@@ -52,17 +54,6 @@ const App = () => {
     );
   };
 
-  const renderTop = () => {
-    return (
-      <View>
-        <Image
-          source={{uri: POKEMON_LOGO}}
-          style={{flex: 1, aspectRatio: 3.0, resizeMode: 'contain'}}
-        />
-      </View>
-    );
-  };
-
   const renderItem = ({item}: any) => (
     <PokemonShow name={item?.name} url={item?.url} />
   );
@@ -95,10 +86,12 @@ const App = () => {
             contentContainerStyle={{
               flexGrow: 1,
             }}
+            contentInset={{bottom: 10}}
             onEndReached={loadMoreOnEnd}
             onEndReachedThreshold={0.4}
             ListFooterComponent={renderFooter}
-            ListHeaderComponent={renderTop}
+            ListHeaderComponent={LogoPokemon}
+            ItemSeparatorComponent={FlatListItemSeparator}
           />
         </View>
       )}

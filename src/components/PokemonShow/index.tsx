@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import Pokemon from 'api/Pokemon';
 import React, {memo} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity} from 'react-native';
 import {TResults} from 'utils/types';
 import {POKE_API} from 'utils/urls';
 import {firstLetterUpper} from 'utils/utils';
@@ -18,13 +18,14 @@ const PokemonShow = (props: TResults) => {
   };
 
   return (
-    <View
+    <TouchableOpacity
       style={{
-        borderColor: '#000',
-        borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: getRandomPastelColor(),
+        borderRadius: 10,
+        marginBottom: 5,
+        marginTop: 5,
       }}>
       <Image
         style={{
@@ -36,7 +37,7 @@ const PokemonShow = (props: TResults) => {
         source={{uri: pokemonImage}}
       />
       <Text>{firstLetterUpper(name)}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
