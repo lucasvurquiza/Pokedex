@@ -9,6 +9,13 @@ import {firstLetterUpper} from 'utils/utils';
 const PokemonShow = (props: TResults) => {
   const {name, url} = props;
   const pokemonId = url.replace(`${POKE_API}pokemon/`, '').replace('/', '');
+  const pokemonImage = Pokemon.getImagePokemon(pokemonId);
+
+  const getRandomPastelColor = () => {
+    const hue = Math.floor(Math.random() * 360);
+    const randomColor = `hsl(${hue}, 100%, 75%)`;
+    return randomColor;
+  };
 
   return (
     <View
@@ -17,13 +24,16 @@ const PokemonShow = (props: TResults) => {
         borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: getRandomPastelColor(),
       }}>
       <Image
         style={{
-          width: 50,
-          height: 50,
+          width: 70,
+          height: 70,
+          borderWidth: 1,
+          margin: 10,
         }}
-        source={{uri: Pokemon.getImagePokemon(pokemonId)}}
+        source={{uri: pokemonImage}}
       />
       <Text>{firstLetterUpper(name)}</Text>
     </View>
