@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import Pokemon from 'api/Pokemon';
 import React, {memo} from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Pokemon from 'api/Pokemon';
 import {TResults} from 'utils/types';
 import {POKE_API} from 'utils/urls';
 import {firstLetterUpper} from 'utils/utils';
@@ -37,6 +38,13 @@ const PokemonShow = (props: TResults) => {
         source={{uri: pokemonImage}}
       />
       <Text>{firstLetterUpper(name)}</Text>
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          right: 10,
+        }}>
+        <Icon name="star" size={35} color="#A3A300" />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };

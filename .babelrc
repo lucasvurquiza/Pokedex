@@ -9,7 +9,8 @@
           { "components": "./src/components" },
           { "screens": "./src/screens" },
           { "utils": "./src/utils" },
-          { "api": "./src/api" }
+          { "api": "./src/api" },
+          { "context": "./src/context" }
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

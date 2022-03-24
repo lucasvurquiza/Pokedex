@@ -11,6 +11,7 @@ module.exports = {
           screens: './src/screens',
           utils: './src/utils',
           api: './src/api',
+          context: './src/context',
         },
       },
     ],
