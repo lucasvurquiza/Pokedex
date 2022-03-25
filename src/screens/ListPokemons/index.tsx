@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useContext, useEffect, useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, View} from 'react-native';
 import Pokemon from 'api/Pokemon';
 import {TAllPokemons} from 'utils/types';
 import PokemonShow from 'components/PokemonShow';
@@ -8,10 +8,8 @@ import {Loading} from 'components/Loading';
 import {POKE_API} from 'utils/urls';
 import {FlatListItemSeparator} from 'components/FlatListItemSeparator';
 import {LogoPokemon} from 'components/LogoPokemon';
-import {FavouritesContext} from 'context/Favourites/FavouritesContext';
 
 export const ListPokemons = () => {
-  const {listFavourites} = useContext(FavouritesContext);
   const [pokemons, setPokemons] = useState<TAllPokemons>({});
   const [pokemonOffset, setPokemonOffset] = useState('');
   const [loading, setLoading] = useState(false);
@@ -74,7 +72,6 @@ export const ListPokemons = () => {
         </View>
       ) : (
         <View>
-          <Text>{listFavourites}</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={pokemons?.results}

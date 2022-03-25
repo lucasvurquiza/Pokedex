@@ -10,7 +10,7 @@
           { "screens": "./src/screens" },
           { "utils": "./src/utils" },
           { "api": "./src/api" },
-          { "context": "./src/context" }
+          { "stores": "./src/stores" }
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
