@@ -12,10 +12,14 @@ const PokemonShow = (props: TResults) => {
   const addFavourite = useListFavouritesStore(
     state => state.addInListFavourites,
   );
+  const removeFavourite = useListFavouritesStore(
+    state => state.removeInListFavourites,
+  );
   const favourites = useListFavouritesStore(state => state.listFavourites);
   const {name, url} = props;
   const pokemonId = url.replace(`${POKE_API}pokemon/`, '').replace('/', '');
   const pokemonImage = Pokemon.getImagePokemon(pokemonId);
+  const contains = favourites.some((item: FavouriteType) => item.name === name);
 
   const getRandomPastelColor = () => {
     const hue = Math.floor(Math.random() * 360);
@@ -24,14 +28,12 @@ const PokemonShow = (props: TResults) => {
   };
 
   const clickedFavourite = () => {
-    const contains = favourites.some(
-      (item: FavouriteType) => item.name === name,
-    );
     if (contains) {
-      console.log('Já está aqui colega');
+      removeFavourite(favourites.filter(item => item.name !== name));
       return;
     } else {
       addFavourite({name, url});
+      return;
     }
   };
 
@@ -61,7 +63,11 @@ const PokemonShow = (props: TResults) => {
           position: 'absolute',
           right: 10,
         }}>
-        <Icon name="star" size={35} color="#A3A300" />
+        {contains ? (
+          <Icon name="star" size={35} color="#FFD700" />
+        ) : (
+          <Icon name="star-o" size={35} color="#000000" />
+        )}
       </TouchableOpacity>
     </TouchableOpacity>
   );

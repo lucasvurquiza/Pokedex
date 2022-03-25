@@ -8,7 +8,12 @@ const Tab = createBottomTabNavigator();
 
 export const BottomTab = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName="Pokemons"
+      screenOptions={{
+        tabBarActiveBackgroundColor: 'rgba(255, 224, 49, 0.5)',
+        tabBarInactiveBackgroundColor: 'rgba(255, 224, 49, 0.5)',
+      }}>
       <Tab.Screen
         name="Pokemons"
         options={{
@@ -16,6 +21,8 @@ export const BottomTab = () => {
           tabBarIcon: ({color}) => (
             <Icon name="search" size={20} color={color} />
           ),
+          tabBarActiveTintColor: '#396BBA',
+          tabBarInactiveTintColor: '#000000',
         }}
         component={ListPokemons}
       />
@@ -26,6 +33,8 @@ export const BottomTab = () => {
           tabBarIcon: ({color}) => (
             <Icon name="align-justify" size={20} color={color} />
           ),
+          tabBarActiveTintColor: '#396BBA',
+          tabBarInactiveTintColor: '#000000',
         }}
         component={Favourites}
       />

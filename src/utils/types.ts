@@ -22,4 +22,5 @@ export type FavouriteType = {
 export type StateZustand = {
   listFavourites: FavouriteType[];
   addInListFavourites: (favourite: FavouriteType) => void;
+  removeInListFavourites: (favourites: FavouriteType[]) => void;
 };
