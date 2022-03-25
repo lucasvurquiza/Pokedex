@@ -2,6 +2,7 @@
 import React, {memo} from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Pokemon from 'api/Pokemon';
 import {FavouriteType, TResults} from 'utils/types';
 import {POKE_API} from 'utils/urls';
@@ -13,7 +14,7 @@ const PokemonShow = (props: TResults) => {
     state => state.addInListFavourites,
   );
   const removeFavourite = useListFavouritesStore(
-    state => state.removeInListFavourites,
+    state => state.removeOrAddArrayInListFavourites,
   );
   const favourites = useListFavouritesStore(state => state.listFavourites);
   const {name, url} = props;
@@ -27,12 +28,17 @@ const PokemonShow = (props: TResults) => {
     return randomColor;
   };
 
-  const clickedFavourite = () => {
+  const clickedFavourite = async () => {
     if (contains) {
       removeFavourite(favourites.filter(item => item.name !== name));
+      await AsyncStorage.setItem(
+        '@favourite_list',
+        JSON.stringify(favourites.filter(item => item.name !== name)),
+      );
       return;
     } else {
       addFavourite({name, url});
+      await AsyncStorage.setItem('@favourite_list', JSON.stringify(favourites));
       return;
     }
   };

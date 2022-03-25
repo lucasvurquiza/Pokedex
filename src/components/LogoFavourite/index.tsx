@@ -8,7 +8,11 @@ export const LogoFavourite = () => {
     <View>
       <Image
         source={{uri: FAVOURITES_LOGO}}
-        style={{flex: 1, aspectRatio: 5.0, resizeMode: 'contain'}}
+        style={{
+          flex: 1,
+          aspectRatio: 5.0,
+          resizeMode: 'contain',
+        }}
       />
     </View>
   );
