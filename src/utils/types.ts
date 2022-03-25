@@ -13,3 +13,13 @@ export type TAllPokemons = {
 export type TItem = {
   item: TResults;
 };
+
+export type FavouriteType = {
+  name: string;
+  url: string;
+};
+
+export type StateZustand = {
+  listFavourites: FavouriteType[];
+  addInListFavourites: (favourite: FavouriteType) => void;
+};

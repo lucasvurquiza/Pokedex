@@ -3,11 +3,16 @@ import React, {memo} from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Pokemon from 'api/Pokemon';
-import {TResults} from 'utils/types';
+import {FavouriteType, TResults} from 'utils/types';
 import {POKE_API} from 'utils/urls';
 import {firstLetterUpper} from 'utils/utils';
+import useListFavouritesStore from 'stores/listFavourites';
 
 const PokemonShow = (props: TResults) => {
+  const addFavourite = useListFavouritesStore(
+    state => state.addInListFavourites,
+  );
+  const favourites = useListFavouritesStore(state => state.listFavourites);
   const {name, url} = props;
   const pokemonId = url.replace(`${POKE_API}pokemon/`, '').replace('/', '');
   const pokemonImage = Pokemon.getImagePokemon(pokemonId);
@@ -16,6 +21,18 @@ const PokemonShow = (props: TResults) => {
     const hue = Math.floor(Math.random() * 360);
     const randomColor = `hsl(${hue}, 100%, 75%)`;
     return randomColor;
+  };
+
+  const clickedFavourite = () => {
+    const contains = favourites.some(
+      (item: FavouriteType) => item.name === name,
+    );
+    if (contains) {
+      console.log('Já está aqui colega');
+      return;
+    } else {
+      addFavourite({name, url});
+    }
   };
 
   return (
@@ -39,6 +56,7 @@ const PokemonShow = (props: TResults) => {
       />
       <Text>{firstLetterUpper(name)}</Text>
       <TouchableOpacity
+        onPress={() => clickedFavourite()}
         style={{
           position: 'absolute',
           right: 10,

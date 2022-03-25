@@ -10,7 +10,6 @@ class Pokemon {
         return response.data;
       })
       .catch(() => {
-        console.log('Deu bigode');
         return null;
       });
   }
@@ -24,7 +23,6 @@ class Pokemon {
         return response.data;
       })
       .catch(() => {
-        console.log('Deu bigode');
         return null;
       });
   }
