@@ -16,6 +16,8 @@ target 'Pokedex' do
 
   pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'PokedexTests' do
     inherit! :complete
     # Pods for testing
