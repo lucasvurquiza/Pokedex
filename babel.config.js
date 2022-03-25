@@ -12,6 +12,7 @@ module.exports = {
           utils: './src/utils',
           api: './src/api',
           stores: './src/stores',
+          routes: './src/routes',
         },
       },
     ],
