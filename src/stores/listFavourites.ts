@@ -6,6 +6,9 @@ const useListFavouritesStore = create<StateZustand>(set => ({
   addInListFavourites: (favourite: FavouriteType) => {
     set(state => ({listFavourites: [...state.listFavourites, favourite]}));
   },
+  removeInListFavourites: (favourites: FavouriteType[]) => {
+    set(() => ({listFavourites: favourites}));
+  },
 }));
 
 export default useListFavouritesStore;

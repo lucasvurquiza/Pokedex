@@ -67,11 +67,12 @@ export const ListPokemons = () => {
             height: '100%',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: '#FFFFFF',
           }}>
           <Loading />
         </View>
       ) : (
-        <View>
+        <View style={{backgroundColor: '#FFFFFF'}}>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={pokemons?.results}
