@@ -1,14 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, View} from 'react-native';
-import {POKEMON_LOGO} from 'utils/urls';
 
 export const LogoPokemon = () => {
   return (
-    <View>
+    <View style={{justifyContent: 'center', alignItems: 'center'}}>
       <Image
-        source={{uri: POKEMON_LOGO}}
-        style={{flex: 1, aspectRatio: 5.0, resizeMode: 'contain'}}
+        source={require('../../../assets/images/pokemon.png')}
+        style={{
+          width: '90%',
+          resizeMode: 'contain',
+        }}
       />
     </View>
   );
