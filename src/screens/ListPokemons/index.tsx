@@ -8,6 +8,7 @@ import {Loading} from 'components/Loading';
 import {POKE_API} from 'utils/urls';
 import {FlatListItemSeparator} from 'components/FlatListItemSeparator';
 import {LogoPokemon} from 'components/LogoPokemon';
+import {InputSearch} from 'components/InputSearch';
 
 export const ListPokemons = () => {
   const [pokemons, setPokemons] = useState<TAllPokemons>({});
@@ -54,6 +55,15 @@ export const ListPokemons = () => {
     );
   };
 
+  const renderHeader = () => {
+    return (
+      <View>
+        <LogoPokemon />
+        <InputSearch />
+      </View>
+    );
+  };
+
   const renderItem = ({item}: any) => (
     <PokemonShow name={item?.name} url={item?.url} />
   );
@@ -91,7 +101,7 @@ export const ListPokemons = () => {
             onEndReached={loadMoreOnEnd}
             onEndReachedThreshold={0.4}
             ListFooterComponent={renderFooter}
-            ListHeaderComponent={LogoPokemon}
+            ListHeaderComponent={renderHeader}
             ItemSeparatorComponent={FlatListItemSeparator}
           />
         </View>

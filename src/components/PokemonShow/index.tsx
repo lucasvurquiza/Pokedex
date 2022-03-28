@@ -2,7 +2,6 @@
 import React, {memo} from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Pokemon from 'api/Pokemon';
 import {FavouriteType, TResults} from 'utils/types';
 import {POKE_API} from 'utils/urls';
@@ -31,14 +30,9 @@ const PokemonShow = (props: TResults) => {
   const clickedFavourite = async () => {
     if (contains) {
       removeFavourite(favourites.filter(item => item.name !== name));
-      await AsyncStorage.setItem(
-        '@favourite_list',
-        JSON.stringify(favourites.filter(item => item.name !== name)),
-      );
       return;
     } else {
       addFavourite({name, url});
-      await AsyncStorage.setItem('@favourite_list', JSON.stringify(favourites));
       return;
     }
   };
@@ -62,7 +56,14 @@ const PokemonShow = (props: TResults) => {
         }}
         source={{uri: pokemonImage}}
       />
-      <Text>{firstLetterUpper(name)}</Text>
+      <Text
+        style={{
+          color: '#000',
+          fontSize: 25,
+          fontFamily: 'Pokemon-Hollow',
+        }}>
+        {firstLetterUpper(name)}
+      </Text>
       <TouchableOpacity
         onPress={() => clickedFavourite()}
         style={{
