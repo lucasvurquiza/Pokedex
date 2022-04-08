@@ -19,8 +19,19 @@ export type FavouriteType = {
   url: string;
 };
 
+export type ResponseType = {
+  name: string;
+  url: string;
+};
+
 export type StateZustand = {
   listFavourites: FavouriteType[];
   addInListFavourites: (favourite: FavouriteType) => void;
   removeOrAddArrayInListFavourites: (favourites: FavouriteType[]) => void;
+};
+
+export type StateZustandByName = {
+  listByName: ResponseType[];
+  addInListByName: (pokemons: ResponseType[]) => void;
+  removeListByName: () => void;
 };

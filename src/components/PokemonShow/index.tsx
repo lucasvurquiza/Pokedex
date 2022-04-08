@@ -17,7 +17,9 @@ const PokemonShow = (props: TResults) => {
   );
   const favourites = useListFavouritesStore(state => state.listFavourites);
   const {name, url} = props;
-  const pokemonId = url.replace(`${POKE_API}pokemon/`, '').replace('/', '');
+  const pokemonId = url.match(/pokemon-form/)
+    ? url.replace(`${POKE_API}pokemon-form/`, '').replace('/', '')
+    : url.replace(`${POKE_API}pokemon/`, '').replace('/', '');
   const pokemonImage = Pokemon.getImagePokemon(pokemonId);
   const contains = favourites.some((item: FavouriteType) => item.name === name);
 

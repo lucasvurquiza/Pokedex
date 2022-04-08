@@ -27,6 +27,19 @@ class Pokemon {
       });
   }
 
+  async getPokemonByName(name: string) {
+    return api
+      .get(`/pokemon/${name}`, {
+        cancelToken: source.token,
+      })
+      .then(async response => {
+        return response.data.forms;
+      })
+      .catch(() => {
+        return null;
+      });
+  }
+
   getImagePokemon(id: string) {
     return `https://cdn.traction.one/pokedex/pokemon/${id}.png`;
   }

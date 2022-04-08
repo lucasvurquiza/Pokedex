@@ -9,24 +9,31 @@ import {POKE_API} from 'utils/urls';
 import {FlatListItemSeparator} from 'components/FlatListItemSeparator';
 import {LogoPokemon} from 'components/LogoPokemon';
 import {InputSearch} from 'components/InputSearch';
+import useListByNameStore from 'stores/listByName';
 
 export const ListPokemons = () => {
   const [pokemons, setPokemons] = useState<TAllPokemons>({});
   const [pokemonOffset, setPokemonOffset] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const listByName = useListByNameStore(state => state.listByName);
 
   useEffect(() => {
     const fetchAllPokemons = async () => {
-      setLoading(true);
-      const response: TAllPokemons = await Pokemon.getAllPokemons();
-      setPokemons(response);
-      const offset = response?.next?.replace(`${POKE_API}pokemon`, '');
-      setPokemonOffset(offset || '');
-      setLoading(false);
+      if (listByName.length === 0) {
+        setLoading(true);
+        const response: TAllPokemons = await Pokemon.getAllPokemons();
+        setPokemons(response);
+        const offset = response?.next?.replace(`${POKE_API}pokemon`, '');
+        setPokemonOffset(offset || '');
+        setLoading(false);
+        return;
+      } else {
+        return;
+      }
     };
     fetchAllPokemons();
-  }, []);
+  }, [listByName]);
 
   const loadMoreOnEnd = async () => {
     setIsRefreshing(true);
@@ -85,7 +92,7 @@ export const ListPokemons = () => {
         <View style={{backgroundColor: '#FFFFFF'}}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={pokemons?.results}
+            data={listByName.length !== 0 ? listByName : pokemons?.results}
             keyExtractor={pokemon =>
               pokemon.url.replace(`${POKE_API}pokemon/`, '').replace('/', '')
             }
