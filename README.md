@@ -39,10 +39,10 @@
 
 #### Tela de Busca
 
-<img src="img/search-screen.png" alt="Tela de Busca" style="zoom:70%; border-radius: 25px;" />
+<img src="images/search-screen.png" alt="Tela de Busca" style="zoom:70%; border-radius: 25px;" />
 
 
 
 #### Tela de Favoritos
 
-<img src="img/favourite-screen.png" alt="Tela de Favoritos" style="zoom:70%; border-radius: 25px;" />
+<img src="images/favourite-screen.png" alt="Tela de Favoritos" style="zoom:70%; border-radius: 25px;" />
